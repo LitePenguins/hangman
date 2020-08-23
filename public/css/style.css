@@ -3,10 +3,27 @@ body {
   font-size: 16px;
 }
 
+.form-group {
+  text-align: center;
+}
+
+.form-group button {
+  margin: 10px;
+}
+
+.form-group input {
+  width: 30%;
+  margin: auto;
+}
+
 .game-container {
   max-width: 1000px;
   margin: 50px auto;
   text-align: center;
+}
+
+#playAgainButton {
+  margin: auto;
 }
 
 .game-header {

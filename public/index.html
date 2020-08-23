@@ -11,60 +11,67 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- <form action="game.html">
-      <div class="form-control">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Enter username"
-          required
-        />
-      </div>
-
-      <button type="submit" class="btn">Start game</button>
-    </form> -->
-
-    <div class="game-container">
+    <section>
       <header class="game-header">
         <div class="jumbotron">
           <h1 class="display-4">Hangman</h1>
         </div>
       </header>
-      <main class="game-main">
-        <form action="" id="guess-form">
+    </section>
+
+    <section class="word-select" id="wordInputSection">
+      <div class="col-4 col-sm-3"></div>
+      <form action="" id="word-selection">
+        <div class="form-group">
+          <!-- <label for="word" class="col-sm-2 col-form-label col-form-label-lg"
+            >Input Word</label
+          > -->
           <input
             type="text"
-            name="guess"
-            id="guessInput"
-            class="form-control"
-            style="margin-bottom: 1em;"
+            id="wordInput"
+            name="word"
+            class="form-control form-control-lg"
+            placeholder="Suggest a word..."
           />
+          <button id="submitWordButton" class="btn btn-primary">Next</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="gameSection" style="display: none;">
+      <div class="game-container">
+        <main class="game-main">
+          <form action="" id="guess-form">
+            <input
+              type="text"
+              name="guess"
+              id="guessInput"
+              class="form-control"
+              style="margin-bottom: 1em;"
+            />
+            <button
+              type="submit"
+              id="guessButton"
+              class="btn btn-success"
+              style="margin-bottom: 3em;"
+            >
+              Guess
+            </button>
+          </form>
+
+          <div id="status"></div>
+          <h1 style="font-size: 5em;" id="currentWord"></h1>
           <button
-            type="submit"
-            id="guessButton"
-            class="btn btn-success"
-            style="margin-bottom: 3em;"
+            type="button"
+            id="playAgainButton"
+            style=""
+            class="btn btn-dark"
           >
-            Guess
+            Play again
           </button>
-        </form>
-
-        <div id="status"></div>
-
-        <h1 style="font-size: 5em;" id="currentWord"></h1>
-
-        <button
-          type="button"
-          id="playAgainButton"
-          style=""
-          class="btn btn-dark"
-        >
-          Play again
-        </button>
-      </main>
-    </div>
+        </main>
+      </div>
+    </section>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

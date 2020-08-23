@@ -14,6 +14,10 @@ app.use(express.static(path.join(__dirname, "public")));
 io.on("connection", (socket) => {
   console.log("user connected");
 
+  socket.on("hangmanWord", (word) => {
+    io.sockets.emit("hangmanWord", word);
+  });
+
   // https://socket.io/docs/server-api/#Flag-%E2%80%98broadcast%E2%80%99
   // Newly connected users only
   // socket.emit("message", "potato");
@@ -31,6 +35,12 @@ io.on("connection", (socket) => {
 
     // Sending guesses to everyone else
     io.sockets.emit("test", guessed);
+  });
+
+  //reset game on reset button pressed
+  socket.on("reset", (resetStatus) => {
+    console.log(resetStatus);
+    io.sockets.emit("reset", resetStatus);
   });
 
   // io.emit("message", "Hello");

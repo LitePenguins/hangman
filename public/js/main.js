@@ -9,6 +9,18 @@ socket.on("test", (test) => {
   checkInput(test);
 });
 
+socket.on("hangmanWord", (word) => {
+  setUpGame(word);
+  document.querySelector("#wordInputSection").style.display = "none";
+  document.querySelector("#gameSection").style.display = "block";
+});
+
+socket.on("reset", () => {
+  document.querySelector("#wordInputSection").style.display = "block";
+  document.querySelector("#wordInput").value = "";
+  document.querySelector("#gameSection").style.display = "none";
+});
+
 //-------------
 
 const guessForm = document.querySelector("#guess-form");
@@ -30,8 +42,14 @@ guessForm.addEventListener("submit", (event) => {
   console.log("Sending from Main.js: " + guess);
 });
 
+document.querySelector("#submitWordButton").addEventListener("click", (e) => {
+  e.preventDefault();
+  let inputWord = document.querySelector("#wordInput").value;
+  socket.emit("hangmanWord", inputWord);
+});
+
 document.querySelector("#playAgainButton").addEventListener("click", () => {
-  setUpGame();
+  socket.emit("reset", true);
 });
 
 const checkInput = (guess) => {
@@ -72,8 +90,8 @@ const checkInput = (guess) => {
   }
 };
 
-const setUpGame = () => {
-  word = "potato";
+const setUpGame = (w) => {
+  word = w;
   answer = [];
   guessedLetters = [];
   won = false;
@@ -91,4 +109,4 @@ const setUpGame = () => {
   document.querySelector("#playAgainButton").style = "display: none";
 };
 
-setUpGame();
+// setUpGame();
